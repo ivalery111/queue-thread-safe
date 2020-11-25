@@ -46,6 +46,8 @@ void *thread_read(void *args) {
 int main(void) {
   queue_t queue;
 
+  queue.msg = NULL;
+
   queue.lock = calloc(1, sizeof(pthread_mutex_t));
   assert(queue.lock != NULL);
   pthread_mutex_init(queue.lock, NULL);
