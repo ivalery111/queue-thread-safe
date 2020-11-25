@@ -19,10 +19,20 @@ add_library(queue)
 add_library(utils::queue ALIAS queue)
 
 target_sources(queue
+    PUBLIC
+            src/queue/_enqueue.c
+            src/queue/enqueue.c
+            src/queue/_dequeue.c
+            src/queue/dequeue.c
 )
 
-target_include_directories(queue PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(queue
+    PUBLIC ${CMAKE_SOURCE_DIR}/include
+           ${CMAKE_SOURCE_DIR}/src/internal
+)
+
+find_package(Threads REQUIRED)
 
 target_link_libraries(queue
-    PRIVATE project_warnings sanitizers
+    PRIVATE project_warnings sanitizers Threads::Threads
 )
