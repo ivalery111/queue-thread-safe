@@ -16,14 +16,14 @@ int _queue_dequeue(queue_t *queue, queue_buffer_handler handler) {
     pthread_mutex_unlock(queue->lock);
 
     if (handler(msg->buffer, msg->buffer_size) == 1) { /* Exit */
-      free(msg->buffer);
       msg->buffer_size = 0;
-      free(msg);
+      safe_free(msg->buffer);
+      safe_free(msg);
       return 1;
     }
 
-    free(msg->buffer);
     msg->buffer_size = 0;
-    free(msg);
+    safe_free(msg->buffer);
+    safe_free(msg);
   }
 }

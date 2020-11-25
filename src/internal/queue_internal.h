@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "queue.h"
+#include "utils.h"
 
 /* TODO: queue message create func */
 /* TODO: queue message release func */
